@@ -2,7 +2,6 @@ import sys
 import os
 import time
 import json
-import aiohttp
 import concurrent.futures
 from datetime import datetime, timedelta
 import requests

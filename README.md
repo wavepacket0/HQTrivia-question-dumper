@@ -8,12 +8,12 @@ This is the general API layout:
 <img src="./api_map.svg" height="500">
 </p>
 
-Example to fetch the game held on 2018-09-01, country code us:
+__Example to fetch the game held on 2018-09-01, country code us__
 
     https://hqbuff.com/api/us/2018-09-01
 
 
-Script features:
+__Script features__
 
  - Default worker threads : cpu count * 2
  - Uses 5 worker threads if cpu count is None
@@ -21,7 +21,7 @@ Script features:
  - Takes 18 seconds to dump the whole us game questions on Ubuntu vm with 2 cores and 10 worker threads (about 45 with 4)
  
  
- How to use:
+__How to use__
  
 
     python3 hq_data_dumper.py -c us
@@ -29,7 +29,7 @@ Script features:
 A file called hq_game_dump_us.json will be created next to the script in the same folder
 
 
-How to load and parse the json file:
+__How to load and parse the json file__
 
     file = open('./hq_game_dump_us.json', 'r')
 	hq_data = json.load(file)

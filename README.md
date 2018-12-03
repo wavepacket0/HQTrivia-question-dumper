@@ -2,7 +2,13 @@
 
 This is a Python 3.0+ (tested on 3.6) script to dump all the HQTrivia questions available on HQBuff. It is based on their API used to dynamically build HQBuff pages when you browse them.
 
-This is the generale API layout:
+This is the general API layout:
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+	
 ```mermaid
 graph LR
 A[https://hqbuff.com/api/] --> B[country code]

@@ -17,4 +17,4 @@ Script features:
  - Default worker threads : cpu count * 2
  - Uses 5 worker threads if cpu count is None
  - Multiple parallel requests using concurrent.futures.ThreadPoolExecutor
- - Takes 18 seconds to dump the whole us game questions on Ununtu vm with 2 cores
+ - Takes 18 seconds to dump the whole us game questions on Ubuntu vm with 2 cores

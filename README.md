@@ -28,7 +28,7 @@ Script features:
 
 A file called hq_game_dump_us.json will be created next to the script in the same folder
 
-```
+
 <details> 
   <summary>Sample game output:</summary>
    ```json
@@ -391,7 +391,7 @@ A file called hq_game_dump_us.json will be created next to the script in the sam
         }
 ```
 </details>
-```
+
 
 How to load and parse the json file:
 

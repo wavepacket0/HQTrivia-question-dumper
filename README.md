@@ -4,7 +4,7 @@ This is a Python 3.0+ (tested on 3.6) script to dump all the HQTrivia questions 
 
 This is the general API layout:
 <p align="center">
-<img src="./api_map.svg" height="700">
+<img src="./api_map.svg" height="500">
 </p>
 
 Example to fetch the game held on 2018-09-01, country code us:

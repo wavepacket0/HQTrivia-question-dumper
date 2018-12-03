@@ -29,9 +29,21 @@ Script features:
 A file called hq_game_dump_us.json will be created next to the script in the same folder
 
 
+How to load and parse the json file:
+
+    file = open('./hq_game_dump_us.json', 'r')
+	hq_data = json.load(file)
+
+	for day in hq_data:
+	    for game in day:
+	        for question in game['questions']:
+	            print(question['text'])
+
+				
+				
 <details> 
   <summary>Sample game output:</summary>
-   ```json
+   
  {
             "active": false,
             "has_final_question": true,
@@ -389,19 +401,7 @@ A file called hq_game_dump_us.json will be created next to the script in the sam
                 }
             ]
         }
-```
 </details>
-
-
-How to load and parse the json file:
-
-    file = open('./hq_game_dump_us.json', 'r')
-	hq_data = json.load(file)
-
-	for day in hq_data:
-	    for game in day:
-	        for question in game['questions']:
-	            print(question['text'])
 
 
 

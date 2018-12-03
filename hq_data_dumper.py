@@ -3,7 +3,6 @@ import os
 import time
 import json
 import aiohttp
-import asyncio
 import concurrent.futures
 from datetime import datetime, timedelta
 import requests
@@ -11,21 +10,14 @@ import requests
 
 class DumpHqGameMatches(object):
 
-    def __init__(self, path=''):
+    def __init__(self, countrycode='us'):
         self.api_uri = 'https://hqbuff.com/api/'
         self.first_game = datetime(2018, 5, 8)
         self.current_path = os.getcwd()
-        self.current_file_path = os.path.join(self.current_path, 'test_data/hq_game_dump.json')
+        self.current_file_path = './hq_game_dump_' + countrycode + '.json'
         self.worker_threads = os.cpu_count() * 2 if os.cpu_count() is not None else 5
 
-    async def get_json_data(self, session, url):
-        response = await session.get(url)
-        if response.status == 200:
-            return await response.json()
-        else:
-            return ''
-
-    def get_json_data1(self, url):
+    def get_json_data(self, url):
         response = requests.get(url)
         if response.status_code == 200:
             return [url, response.json()]
@@ -49,14 +41,13 @@ class DumpHqGameMatches(object):
         urls = self.build_urls_map(country)
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=self.worker_threads) as executor:
-            for result in executor.map(self.get_json_data1, [url for url in urls]):
+            for result in executor.map(self.get_json_data, [url for url in urls]):
                 if result[0] is not '':
                     print(f"Parsing data from {result[0]}")
                     json_data.append(result[1])
 
         with open(self.current_file_path, 'w') as outfile:
             json.dump(json_data, outfile, indent=4, ensure_ascii=False)
-
 
     def run(self):
 
@@ -74,3 +65,16 @@ class DumpHqGameMatches(object):
         end = time.time()
 
         print(f'\nParsing took : {end - start} seconds\n')
+
+
+def main():
+    args = sys.argv[1:]
+
+    if len(args) < 1 or len(args) > 2 or '-cc' not in args and '--countrycode' not in args:
+        print("Usage hq_data_dumper.py -cc [--countrycode][us, de, uk, au]")
+    else:
+        DumpHqGameMatches(args[1]).run()
+
+
+if __name__ == "__main__":
+    main()
